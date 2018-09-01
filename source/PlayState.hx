@@ -4,6 +4,8 @@ import flixel.FlxState;
 
 class PlayState extends FlxState {
 	override public function create():Void {
+		var _player:Player = new Player(20, 20);
+		add(_player);
 		super.create();
 	}
 
