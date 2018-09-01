@@ -5,6 +5,7 @@ import flixel.ui.FlxButton;
 import flixel.FlxG;
 
 class MenuState extends FlxState {
+	
 	override public function create():Void {
 		var _btnPlay:FlxButton = new FlxButton(0, 0, "Play", clickPlay);
 		add(_btnPlay);
