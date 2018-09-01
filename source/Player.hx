@@ -17,6 +17,8 @@ class Player extends FlxSprite {
   public var friction:Float = 0.95;
   public var position:FlxPoint = null;
   public var mousePosition:FlxPoint = null;
+  public var fuel:Float = 100;
+  public var fuelEfficiency:Float = 0.5;
 
   public function new(?X:Float=0, ?Y:Float=0) {
     super(X, Y);
@@ -35,22 +37,22 @@ class Player extends FlxSprite {
   }
 
   public function move():Void {
-
-    var hDelta:Float = Math.abs(mousePosition.x - position.x);
-    var vDelta:Float = Math.abs(mousePosition.y - position.y);
-
-    if (position.distanceTo(mousePosition) > limit) {
-      if (position.x < mousePosition.x && hDelta > limit) hSpeed += baseAccel;
-      else if (hDelta > limit) hSpeed -= baseAccel;
-      if (position.y < mousePosition.y && vDelta > limit) vSpeed += baseAccel;
-      else if (vDelta > limit) vSpeed -= baseAccel;
+    if (fuel != 0) {
+      var hDelta:Float = Math.abs(mousePosition.x - position.x);
+      var vDelta:Float = Math.abs(mousePosition.y - position.y);
+      var hSpeedOld:Float = hSpeed;
+      var vSpeedOld:Float = vSpeed;
+      if (position.distanceTo(mousePosition) > limit) {
+        if (position.x < mousePosition.x && hDelta > limit) hSpeed += baseAccel;
+        else if (hDelta > limit) hSpeed -= baseAccel;
+        if (position.y < mousePosition.y && vDelta > limit) vSpeed += baseAccel;
+        else if (vDelta > limit) vSpeed -= baseAccel;
+      }
+      if (hSpeed != hSpeedOld || vSpeed != vSpeedOld) fuel -= fuelEfficiency;
+      if (hSpeed > topSpeed) hSpeed = topSpeed;
+      if (vSpeed > topSpeed) vSpeed = topSpeed;
+      velocity.set(hSpeed, vSpeed);
     }
-
-    if (hSpeed > topSpeed) hSpeed = topSpeed;
-    if (vSpeed > topSpeed) vSpeed = topSpeed;
-
-    velocity.set(hSpeed, vSpeed);
-
   }
 
   public function updatePosition():FlxPoint {
