@@ -2,15 +2,12 @@ package;
 
 import flixel.FlxState;
 
-class MenuState extends FlxState
-{
-	override public function create():Void
-	{
+class MenuState extends FlxState {
+	override public function create():Void {
 		super.create();
 	}
 
-	override public function update(elapsed:Float):Void
-	{
+	override public function update(elapsed:Float):Void {
 		super.update(elapsed);
 	}
 }
