@@ -10,6 +10,8 @@ class PlayState extends FlxState {
 		FlxG.mouse.visible = false;
 		var _player:Player = new Player(20, 20);
 		add(_player);
+		var _hud:Hud = new Hud();
+		add(_hud);
 		super.create();
 	}
 
