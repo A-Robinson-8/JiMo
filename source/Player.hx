@@ -9,7 +9,7 @@ import flixel.system.FlxAssets.FlxGraphicAsset;
 
 class Player extends FlxSprite {
 
-  public var topSpeed:Float = 750;
+  public var topSpeed:Float = 1500;
   public var baseAccel:Float = 0.1;
   public var hSpeed:Float = 0;
   public var vSpeed:Float = 0;
@@ -22,7 +22,6 @@ class Player extends FlxSprite {
   public function new(?X:Float=0, ?Y:Float=0) {
     super(X, Y);
     loadGraphic("assets/images/ship.png");
-    drag.x = drag.y = friction;
   }
 
   override public function update(elapsed:Float):Void {
