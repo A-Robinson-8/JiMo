@@ -21,7 +21,7 @@ class Player extends FlxSprite {
 
   public function new(?X:Float=0, ?Y:Float=0) {
     super(X, Y);
-    makeGraphic(16, 16, FlxColor.WHITE);
+    loadGraphic("assets/images/ship.png");
     drag.x = drag.y = friction;
   }
 
@@ -47,6 +47,8 @@ class Player extends FlxSprite {
     vSpeed = vSpeed * friction;
     if (hSpeed > topSpeed) hSpeed = topSpeed;
     if (vSpeed > topSpeed) vSpeed = topSpeed;
+
+    this.angle = position.angleBetween(mousePosition);
     velocity.set(hSpeed, vSpeed);
 
   }
