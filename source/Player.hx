@@ -10,14 +10,13 @@ import flixel.system.FlxAssets.FlxGraphicAsset;
 class Player extends FlxSprite {
 
   public var topSpeed:Float = 1500;
-  public var baseAccel:Float = 0.1;
+  public var baseAccel:Float = 100;
   public var hSpeed:Float = 0;
   public var vSpeed:Float = 0;
-  public var limit:Float = 10;
+  public var limit:Float = 100;
   public var friction:Float = 0.95;
   public var position:FlxPoint = null;
   public var mousePosition:FlxPoint = null;
-  public var distance:Float = null;
 
   public function new(?X:Float=0, ?Y:Float=0) {
     super(X, Y);
@@ -25,29 +24,31 @@ class Player extends FlxSprite {
   }
 
   override public function update(elapsed:Float):Void {
-    move();
+    position = updatePosition();
+    mousePosition = FlxG.mouse.getWorldPosition();
+    if (FlxG.mouse.pressed) this.move();
+    hSpeed = hSpeed * friction;
+    vSpeed = vSpeed * friction;
+    velocity.set(hSpeed, vSpeed);
     super.update(elapsed);
+    angle = position.angleBetween(mousePosition);
   }
 
   public function move():Void {
 
-    position = updatePosition();
-    mousePosition = FlxG.mouse.getWorldPosition();
-    distance = position.distanceTo(mousePosition);
+    var hDelta:Float = Math.abs(mousePosition.x - position.x);
+    var vDelta:Float = Math.abs(mousePosition.y - position.y);
 
-    if (distance > limit) {
-      if (position.x < mousePosition.x) hSpeed += baseAccel * distance;
-      else hSpeed -= baseAccel * distance;
-      if (position.y < mousePosition.y) vSpeed += baseAccel * distance;
-      else vSpeed -= baseAccel * distance;
+    if (position.distanceTo(mousePosition) > limit) {
+      if (position.x < mousePosition.x && hDelta > limit) hSpeed += baseAccel;
+      else if (hDelta > limit) hSpeed -= baseAccel;
+      if (position.y < mousePosition.y && vDelta > limit) vSpeed += baseAccel;
+      else if (vDelta > limit) vSpeed -= baseAccel;
     }
 
-    hSpeed = hSpeed * friction;
-    vSpeed = vSpeed * friction;
     if (hSpeed > topSpeed) hSpeed = topSpeed;
     if (vSpeed > topSpeed) vSpeed = topSpeed;
 
-    this.angle = position.angleBetween(mousePosition);
     velocity.set(hSpeed, vSpeed);
 
   }
