@@ -6,6 +6,7 @@ import flixel.FlxSprite;
 import flixel.ui.FlxBar;
 import flixel.util.FlxColor;
 import flixel.group.FlxGroup.FlxTypedGroup;
+import flixel.text.FlxText;
 using flixel.util.FlxSpriteUtil;
 
 class Hud extends FlxTypedGroup<FlxSprite> {
@@ -14,28 +15,33 @@ class Hud extends FlxTypedGroup<FlxSprite> {
   var fuelBarBtm:FlxBar = null;
   var fuelBarLft:FlxBar = null;
   var fuelBarRgt:FlxBar = null;
+  var text:FlxText = null;
   var p:Player = null;
 
   public function new(p:Player) {
     super();
     this.p = p;
-    fuelBarTop = new FlxBar(0, 0, FlxBarFillDirection.LEFT_TO_RIGHT, FlxG.width, 10);
+    fuelBarTop = new FlxBar(0, 0, FlxBarFillDirection.LEFT_TO_RIGHT, FlxG.width, 20);
 		fuelBarTop.createFilledBar(FlxColor.TRANSPARENT, FlxColor.WHITE, false);
 		add(fuelBarTop);
     fuelBarTop.active = true;
-    fuelBarBtm = new FlxBar(0, FlxG.height - 10, FlxBarFillDirection.RIGHT_TO_LEFT, FlxG.width, 10);
+    fuelBarBtm = new FlxBar(0, FlxG.height - 20, FlxBarFillDirection.RIGHT_TO_LEFT, FlxG.width, 20);
 		fuelBarBtm.createFilledBar(FlxColor.TRANSPARENT, FlxColor.WHITE, false);
 		add(fuelBarBtm);
     fuelBarBtm.active = true;
-    fuelBarLft = new FlxBar(0, 0, FlxBarFillDirection.BOTTOM_TO_TOP, 10, FlxG.height);
+    fuelBarLft = new FlxBar(0, 0, FlxBarFillDirection.BOTTOM_TO_TOP, 20, FlxG.height);
 		fuelBarLft.createFilledBar(FlxColor.TRANSPARENT, FlxColor.WHITE, false);
 		add(fuelBarLft);
     fuelBarLft.active = true;
-    fuelBarRgt = new FlxBar(FlxG.width - 10, 0, FlxBarFillDirection.TOP_TO_BOTTOM, 10, FlxG.height);
+    fuelBarRgt = new FlxBar(FlxG.width - 20, 0, FlxBarFillDirection.TOP_TO_BOTTOM, 20, FlxG.height);
 		fuelBarRgt.createFilledBar(FlxColor.TRANSPARENT, FlxColor.WHITE, false);
 	  add(fuelBarRgt);
     fuelBarRgt.active = true;
     visible = true;
+    text = new FlxText(20, FlxG.height - 20);
+    text.text = "SMASHTEROIDS - SMASH STUFF HARD - FIND MORE FUEL - DON'T GET STUCK";
+    text.setFormat("assets/data/VT323-Regular.ttf", 20);
+    add(text);
   }
 
   override public function update(elapsed:Float):Void {
