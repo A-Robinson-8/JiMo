@@ -15,7 +15,7 @@ class Player extends FlxSprite {
   public var baseAccel:Float = 100;
   public var hSpeed:Float = 0;
   public var vSpeed:Float = 0;
-  public var limit:Float = 100;
+  public var limit:Float = 50;
   public var friction:Float = 0.99;
   public var position:FlxPoint = null;
   public var mousePosition:FlxPoint = null;
@@ -31,7 +31,7 @@ class Player extends FlxSprite {
     super(X, Y);
     loadGraphic("assets/images/ship.png");
     thrust = FlxG.sound.load("assets/sounds/thrust.wav");
-    thrust.volume = 0.3;
+    thrust.volume = 0.1;
   }
 
   override public function update(elapsed:Float):Void {
@@ -59,12 +59,12 @@ class Player extends FlxSprite {
         else if (hDelta > limit) hSpeed -= baseAccel;
         if (position.y < mousePosition.y && vDelta > limit) vSpeed += baseAccel;
         else if (vDelta > limit) vSpeed -= baseAccel;
+        thrust.play();
       }
       if (hSpeed != hSpeedOld || vSpeed != vSpeedOld) fuel -= fuelEfficiency;
       if (hSpeed > topSpeed) hSpeed = topSpeed;
       if (vSpeed > topSpeed) vSpeed = topSpeed;
       velocity.set(hSpeed, vSpeed);
-      thrust.play();
     }
   }
 
