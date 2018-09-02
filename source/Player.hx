@@ -29,6 +29,7 @@ class Player extends FlxSprite {
     super(X, Y);
     loadGraphic("assets/images/ship.png");
     thrust = FlxG.sound.load("assets/sounds/thrust.wav");
+    thrust.volume = 0.3;
   }
 
   override public function update(elapsed:Float):Void {

@@ -37,7 +37,9 @@ class PlayState extends FlxState {
 		_effectSprite.effects = [_shake];
 		makeStars();
 		smashSound = FlxG.sound.load("assets/sounds/smash.wav");
+		smashSound.volume = 0.5;
 		hitSound = FlxG.sound.load("assets/sounds/hit.wav");
+		hitSound.volume = 0.3;
 		super.create();
 	}
 
