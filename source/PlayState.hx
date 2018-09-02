@@ -29,6 +29,7 @@ class PlayState extends FlxState {
 		_effectSprite = new FlxEffectSprite(_player);
 		add(_effectSprite);
 		_effectSprite.effects = [_shake];
+		makeStars();
 		super.create();
 	}
 
@@ -66,5 +67,13 @@ class PlayState extends FlxState {
 		_effectSprite.x = _player.x;
 		_effectSprite.y = _player.y;
 		_effectSprite.angle = _player.angle;
+	}
+
+	public function makeStars():Void {
+		var i = 0;
+		for (i in 0...Std.random(40) + 20) {
+			var _star = new Star(Std.random(FlxG.width), Std.random(FlxG.height));
+			add(_star);
+		}
 	}
 }
