@@ -48,7 +48,7 @@ class Hud extends FlxTypedGroup<FlxSprite> {
     fuelBarBtm.value = p.fuel;
     fuelBarLft.value = p.fuel;
     fuelBarRgt.value = p.fuel;
-    text.text = "SMASHTEROIDS | SMASH STUFF HARD | FIND MORE FUEL | DON'T GET STUCK | ESC TO RESET | SCORE: " + p.score;
+    text.text = "SMASHTEROIDS | SMASH STUFF HARD | FIND MORE FUEL | DON'T GET STUCK | R TO RESET | SCORE: " + p.score;
     super.update(elapsed);
   }
 

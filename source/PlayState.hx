@@ -24,7 +24,6 @@ class PlayState extends FlxState {
 	var hitSound:FlxSound = null;
 
 	override public function create():Void {
-		FlxG.mouse.visible = false;
 		_player = new Player(Std.int(FlxG.width/2), Std.int(FlxG.height/2));
 		add(_player);
 		_hud = new Hud(_player);
@@ -49,7 +48,8 @@ class PlayState extends FlxState {
 		FlxG.overlap(_player, _asteroids, smash);
 		FlxG.collide(_asteroids, _asteroids, hit);
 		updateEffect();
-		if (FlxG.keys.pressed.ESCAPE) FlxG.resetState();
+		if (FlxG.keys.pressed.R) FlxG.resetState();
+		FlxG.mouse.visible = false;
 	}
 
 	public function spawn():Void {
