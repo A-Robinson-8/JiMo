@@ -6,12 +6,16 @@ import flixel.FlxObject;
 import flixel.math.FlxPoint;
 import flixel.math.FlxVelocity;
 import flixel.group.FlxGroup;
+import flixel.addons.effects.chainable.FlxShakeEffect;
+import flixel.addons.effects.chainable.FlxEffectSprite;
 
 class PlayState extends FlxState {
 
 	var _player:Player = null;
 	var _hud:Hud = null;
 	var _asteroids:FlxGroup = null;
+	var _shake:FlxShakeEffect = null;
+	var _effectSprite:FlxEffectSprite = null;
 
 	override public function create():Void {
 		FlxG.mouse.visible = false;
@@ -21,6 +25,10 @@ class PlayState extends FlxState {
 		add(_hud);
 		_asteroids = new FlxGroup();
 		add(_asteroids);
+		_shake = new FlxShakeEffect(15, 0.2);
+		_effectSprite = new FlxEffectSprite(_player);
+		add(_effectSprite);
+		_effectSprite.effects = [_shake];
 		super.create();
 	}
 
@@ -28,6 +36,7 @@ class PlayState extends FlxState {
 		spawn();
 		super.update(elapsed);
 		FlxG.collide(_player, _asteroids, smash);
+		updateEffect();
 	}
 
 	public function spawn():Void {
@@ -48,6 +57,13 @@ class PlayState extends FlxState {
 			Asteroid.exists = false;
 			_player.fuel += Std.random(20) + 20;
 			if (_player.fuel > 100) _player.fuel = 100;
+			_shake.start();
 		}
+	}
+
+	public function updateEffect():Void {
+		_effectSprite.x = _player.x;
+		_effectSprite.y = _player.y;
+		_effectSprite.angle = _player.angle;
 	}
 }
