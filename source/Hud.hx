@@ -38,7 +38,7 @@ class Hud extends FlxTypedGroup<FlxSprite> {
 	  add(fuelBarRgt);
     fuelBarRgt.active = true;
     visible = true;
-    text = new FlxText(20, FlxG.height - 20);
+    text = new FlxText(20, FlxG.height - 23);
     text.setFormat("assets/data/VT323-Regular.ttf", 20);
     add(text);
   }
@@ -48,7 +48,7 @@ class Hud extends FlxTypedGroup<FlxSprite> {
     fuelBarBtm.value = p.fuel;
     fuelBarLft.value = p.fuel;
     fuelBarRgt.value = p.fuel;
-    text.text = "SMASHTEROIDS | SMASH STUFF HARD | FIND MORE FUEL | DON'T GET STUCK | SCORE: " + p.score;
+    text.text = "SMASHTEROIDS | SMASH STUFF HARD | FIND MORE FUEL | DON'T GET STUCK | ESC TO RESET | SCORE: " + p.score;
     super.update(elapsed);
   }
 

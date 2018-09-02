@@ -42,6 +42,7 @@ class PlayState extends FlxState {
 		FlxG.collide(_player, _asteroids, smash);
 		FlxG.collide(_asteroids, _asteroids);
 		updateEffect();
+		if (FlxG.keys.pressed.ESCAPE) FlxG.stateReset();
 	}
 
 	public function spawn():Void {
