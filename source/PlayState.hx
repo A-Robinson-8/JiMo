@@ -17,6 +17,7 @@ class PlayState extends FlxState {
 	var _shake:FlxShakeEffect = null;
 	var _effectSprite:FlxEffectSprite = null;
 	var spawnMax:Int = 10;
+	var spawnMin:Int = 3;
 	var spawnCount:Int = 0;
 
 	override public function create():Void {
@@ -44,7 +45,7 @@ class PlayState extends FlxState {
 	}
 
 	public function spawn():Void {
-		if (Std.random(120) == 1) {
+		if (Std.random(120) == 1 || spawnCount < spawnMin) {
 			var _asteroid = new Asteroid(0, 0);
 			_asteroids.add(_asteroid);
 			add(_asteroid);
@@ -63,6 +64,7 @@ class PlayState extends FlxState {
 			spawnCount -= 1;
 			_player.fuel += Std.random(20) + 20;
 			if (_player.fuel > 100) _player.fuel = 100;
+			_player.score += 1;
 			_shake.start();
 		}
 	}

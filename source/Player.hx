@@ -21,6 +21,7 @@ class Player extends FlxSprite {
   public var fuel:Float = 100;
   public var fuelEfficiency:Float = 0.5;
   public var smashLimit = 350;
+  public var score = 0;
 
   public function new(?X:Float=0, ?Y:Float=0) {
     super(X, Y);
