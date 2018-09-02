@@ -3,6 +3,7 @@ package;
 import flixel.FlxG;
 import flixel.FlxState;
 import flixel.FlxObject;
+import flixel.system.FlxSound;
 import flixel.math.FlxPoint;
 import flixel.math.FlxVelocity;
 import flixel.group.FlxGroup;
@@ -19,6 +20,8 @@ class PlayState extends FlxState {
 	var spawnMax:Int = 10;
 	var spawnMin:Int = 3;
 	var spawnCount:Int = 0;
+	var smashSound:FlxSound = null;
+	var hitSound:FlxSound = null;
 
 	override public function create():Void {
 		FlxG.mouse.visible = false;
@@ -33,6 +36,8 @@ class PlayState extends FlxState {
 		add(_effectSprite);
 		_effectSprite.effects = [_shake];
 		makeStars();
+		smashSound = FlxG.sound.load("assets/sounds/smash.wav");
+		hitSound = FlxG.sound.load("assets/sounds/hit.wav");
 		super.create();
 	}
 
@@ -40,9 +45,9 @@ class PlayState extends FlxState {
 		if (spawnCount < spawnMax) spawn();
 		super.update(elapsed);
 		FlxG.collide(_player, _asteroids, smash);
-		FlxG.collide(_asteroids, _asteroids);
+		FlxG.collide(_asteroids, _asteroids, hit);
 		updateEffect();
-		if (FlxG.keys.pressed.ESCAPE) FlxG.stateReset();
+		if (FlxG.keys.pressed.ESCAPE) FlxG.resetState();
 	}
 
 	public function spawn():Void {
@@ -52,6 +57,10 @@ class PlayState extends FlxState {
 			add(_asteroid);
 			spawnCount += 1;
 		}
+	}
+
+	public function hit(Asteroid:FlxObject, Asteroid:FlxObject):Void {
+		hitSound.play();
 	}
 
 	public function smash(Player:FlxObject, Asteroid:FlxObject):Void {
@@ -69,11 +78,12 @@ class PlayState extends FlxState {
 			if (_player.fuel > 100) _player.fuel = 100;
 			_player.score += 1;
 			_shake.start();
+			smashSound.play();
 			for (i in 0...Std.random(5) + 5) {
 				var _debris:Debris = new Debris(_player.x, _player.y);
 				add(_debris);
 			}
-		}
+		} else hit(null, null);
 		_player.hSpeed = _player.hSpeed * 0.1;
 		_player.vSpeed = _player.vSpeed * 0.1;
 	}

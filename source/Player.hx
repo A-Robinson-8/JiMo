@@ -2,6 +2,7 @@ package;
 
 import flixel.FlxG;
 import flixel.FlxSprite;
+import flixel.system.FlxSound;
 import flixel.util.FlxColor;
 import flixel.util.FlxSpriteUtil;
 import flixel.math.FlxVelocity;
@@ -20,12 +21,14 @@ class Player extends FlxSprite {
   public var mousePosition:FlxPoint = null;
   public var fuel:Float = 100;
   public var fuelEfficiency:Float = 0.5;
-  public var smashLimit = 300;
-  public var score = 0;
+  public var smashLimit:Int = 300;
+  public var score:Int = 0;
+  public var thrust:FlxSound = null;
 
   public function new(?X:Float=0, ?Y:Float=0) {
     super(X, Y);
     loadGraphic("assets/images/ship.png");
+    thrust = FlxG.sound.load("assets/sounds/thrust.wav");
   }
 
   override public function update(elapsed:Float):Void {
@@ -56,6 +59,7 @@ class Player extends FlxSprite {
       if (hSpeed > topSpeed) hSpeed = topSpeed;
       if (vSpeed > topSpeed) vSpeed = topSpeed;
       velocity.set(hSpeed, vSpeed);
+      thrust.play();
     }
   }
 
