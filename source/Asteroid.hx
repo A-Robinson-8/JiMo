@@ -23,16 +23,16 @@ class Asteroid extends FlxSprite {
     switch (Std.random(4)) {
       case 0:
         this.x = 0;
-        this.y = Std.random(960);
+        this.y = Std.random(FlxG.height);
       case 1:
-        this.x = 960;
-        this.y = Std.random(960);
+        this.x = FlxG.width;
+        this.y = Std.random(FlxG.height);
       case 2:
-        this.x = Std.random(960);
+        this.x = Std.random(FlxG.width);
         this.y = 0;
       case 3:
-        this.x = Std.random(960);
-        this.y = 960;
+        this.x = Std.random(FlxG.width);
+        this.y = FlxG.height;
     }
   }
 

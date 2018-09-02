@@ -16,7 +16,7 @@ class Hud extends FlxTypedGroup<FlxSprite> {
   public function new(p:Player) {
     super();
     this.p = p;
-    fuelBar = new FlxBar(0, 0, LEFT_TO_RIGHT, 960, 10);
+    fuelBar = new FlxBar(0, 0, LEFT_TO_RIGHT, FlxG.width, 10);
 		fuelBar.createFilledBar(FlxColor.TRANSPARENT, FlxColor.WHITE, false);
 		add(fuelBar);
     fuelBar.active = true;
