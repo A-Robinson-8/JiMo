@@ -2,6 +2,8 @@ package;
 
 import flixel.FlxG;
 import flixel.FlxState;
+import flixel.FlxObject;
+import flixel.math.FlxPoint;
 import flixel.math.FlxVelocity;
 import flixel.group.FlxGroup;
 
@@ -25,6 +27,7 @@ class PlayState extends FlxState {
 	override public function update(elapsed:Float):Void {
 		spawn();
 		super.update(elapsed);
+		FlxG.collide(_player, _asteroids, smash);
 	}
 
 	public function spawn():Void {
@@ -33,5 +36,13 @@ class PlayState extends FlxState {
 			_asteroids.add(_asteroid);
 			add(_asteroid);
 		}
+	}
+
+	public function smash(Player:FlxObject, Asteroid:FlxObject):Void {
+		var playerVelocity:FlxPoint = Player.velocity;
+		var asteroidVelocity:FlxPoint = Asteroid.velocity;
+		var xDelta = Math.abs(playerVelocity.x - asteroidVelocity.x);
+		var yDelta = Math.abs(playerVelocity.y - asteroidVelocity.y);
+		var delta = Math.sqrt(xDelta * xDelta + yDelta * yDelta);
 	}
 }
