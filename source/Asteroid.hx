@@ -10,8 +10,8 @@ import flixel.system.FlxAssets.FlxGraphicAsset;
 class Asteroid extends FlxSprite {
 
   var maxSpeed:Int = 250;
-  var angSpeed:Float = null;
-  var size:Int = null;
+  var angSpeed:Float = 0;
+  var size:Int = 0;
 
   public function new(?X:Float=0, ?Y:Float=0) {
     super(X, Y);

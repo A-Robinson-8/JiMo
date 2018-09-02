@@ -7,7 +7,7 @@ using flixel.util.FlxSpriteUtil;
 
 class Star extends FlxSprite {
 
-  var size:Int = null;
+  var size:Int = 0;
 
   public function new(?X:Float=0, ?Y:Float=0) {
     super(X, Y);
