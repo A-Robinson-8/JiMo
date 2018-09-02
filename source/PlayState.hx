@@ -63,7 +63,7 @@ class PlayState extends FlxState {
 	}
 
 	public function hit(Asteroid:FlxObject, Asteroid:FlxObject):Void {
-		hitSound.play();
+		hitSound.play(true);
 	}
 
 	public function smash(Player:FlxObject, Asteroid:FlxObject):Void {
@@ -82,7 +82,7 @@ class PlayState extends FlxState {
 			if (FlxG.mouse.pressed) _player.scoreTemp += 1;
 			else _player.score += 1;
 			_shake.start();
-			smashSound.play();
+			smashSound.play(true);
 			for (i in 0...Std.random(5) + 5) {
 				var _debris:Debris = new Debris(_player.x, _player.y);
 				add(_debris);
