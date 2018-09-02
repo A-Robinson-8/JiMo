@@ -16,7 +16,7 @@ class Debris extends FlxSprite {
   public function new(?X:Float=0, ?Y:Float=0) {
     super(X, Y);
     size = Std.random(10) + 4;
-    makeGraphic(size, size, FlxColor.WHITE);
+    makeGraphic(size, size, FlxColor.fromRGB(200, 200, 200));
     velocity.set(Std.random(maxSpeed), Std.random(maxSpeed));
     this.angle = Std.random(90);
     this.angSpeed = Std.random(20)/20 - 0.5;
