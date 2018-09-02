@@ -21,7 +21,7 @@ class PlayState extends FlxState {
 
 	override public function create():Void {
 		FlxG.mouse.visible = false;
-		_player = new Player(20, 20);
+		_player = new Player(Std.Int(FlxG.width/2), Std.Int(FlxG.height/2));
 		add(_player);
 		_hud = new Hud(_player);
 		add(_hud);
