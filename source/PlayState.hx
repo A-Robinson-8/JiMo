@@ -6,9 +6,11 @@ import flixel.math.FlxVelocity;
 
 class PlayState extends FlxState {
 
+	var _player:Player = null;
+
 	override public function create():Void {
 		FlxG.mouse.visible = false;
-		var _player:Player = new Player(20, 20);
+		_player = new Player(20, 20);
 		add(_player);
 		var _hud:Hud = new Hud(_player);
 		add(_hud);

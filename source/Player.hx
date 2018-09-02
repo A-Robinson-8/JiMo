@@ -3,6 +3,7 @@ package;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.util.FlxColor;
+import flixel.util.FlxSpriteUtil;
 import flixel.math.FlxVelocity;
 import flixel.math.FlxPoint;
 import flixel.system.FlxAssets.FlxGraphicAsset;
@@ -34,6 +35,7 @@ class Player extends FlxSprite {
     velocity.set(hSpeed, vSpeed);
     super.update(elapsed);
     angle = position.angleBetween(mousePosition);
+  	FlxSpriteUtil.screenWrap(this);
   }
 
   public function move():Void {
