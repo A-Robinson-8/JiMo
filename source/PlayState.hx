@@ -63,7 +63,7 @@ class PlayState extends FlxState {
 	}
 
 	public function hit(Asteroid:FlxObject, Asteroid:FlxObject):Void {
-		hitSound.play(true);
+		hitSound.play();
 	}
 
 	public function smash(Player:FlxObject, Asteroid:FlxObject):Void {
