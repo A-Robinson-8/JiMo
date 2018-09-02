@@ -44,7 +44,7 @@ class PlayState extends FlxState {
 	override public function update(elapsed:Float):Void {
 		if (spawnCount < spawnMax) spawn();
 		super.update(elapsed);
-		FlxG.collide(_player, _asteroids, smash);
+		FlxG.overlap(_player, _asteroids, smash);
 		FlxG.collide(_asteroids, _asteroids, hit);
 		updateEffect();
 		if (FlxG.keys.pressed.ESCAPE) FlxG.resetState();
@@ -86,6 +86,7 @@ class PlayState extends FlxState {
 		} else hit(null, null);
 		_player.hSpeed = _player.hSpeed * 0.1;
 		_player.vSpeed = _player.vSpeed * 0.1;
+		FlxG.collide(_player, _asteroids);
 	}
 
 	public function updateEffect():Void {

@@ -21,7 +21,7 @@ class Player extends FlxSprite {
   public var mousePosition:FlxPoint = null;
   public var fuel:Float = 100;
   public var fuelEfficiency:Float = 0.5;
-  public var smashLimit:Int = 300;
+  public var smashLimit:Int = 1000;
   public var score:Int = 0;
   public var thrust:FlxSound = null;
 
