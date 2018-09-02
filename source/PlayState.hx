@@ -16,7 +16,6 @@ class PlayState extends FlxState {
 	var _asteroids:FlxGroup = null;
 	var _shake:FlxShakeEffect = null;
 	var _effectSprite:FlxEffectSprite = null;
-	var _emitter:FlxEmitter = null;
 	var spawnMax:Int = 10;
 	var spawnMin:Int = 3;
 	var spawnCount:Int = 0;
@@ -60,7 +59,8 @@ class PlayState extends FlxState {
 		var xDelta = Math.abs(playerVelocity.x - asteroidVelocity.x);
 		var yDelta = Math.abs(playerVelocity.y - asteroidVelocity.y);
 		var delta = Math.sqrt(xDelta * xDelta + yDelta * yDelta);
-		var quantity = Std.random(20) + 20;
+		var quantity:Int = Std.random(20) + 20;
+		var i:Int = 0;
 		if (delta > _player.smashLimit) {
 			Asteroid.exists = false;
 			spawnCount -= 1;
@@ -68,6 +68,10 @@ class PlayState extends FlxState {
 			if (_player.fuel > 100) _player.fuel = 100;
 			_player.score += 1;
 			_shake.start();
+			for (i in 0...Std.random(5) + 5) {
+				var _debris:Debris = new Debris(_player.x, _player.y);
+				add(_debris);
+			}
 		}
 		_player.hSpeed = _player.hSpeed * 0.1;
 		_player.vSpeed = _player.vSpeed * 0.1;
