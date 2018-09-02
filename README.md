@@ -1,13 +1,14 @@
-# Smashteroids
+# [Smashteroids](https://nekro.itch.io/smashteroids)
 
 "We regret to inform pilots that, due to budget cuts, new triangle ships will be fitted with reinforced hull where the lasers used to be."
 
 ## Overview
 
-* Developed in Haxeflixel for the GMTK Jam 2018
+* Developed in Haxeflixel for GMTK Jam 2018
+* Runs in most browsers (including mobile devices)
 * Break asteroids by hitting them at high speeds
 * Use asteroid debris to synthesise more fuel
-* See how many asteroids you can smash before you run out fuel
+* Create a multiplier chain by keeping engines online
 
 ## Authors
 
@@ -15,7 +16,11 @@ Developed by [Alistair Robinson](https://github.com/A-Robinson-8)
 
 ## License
 
-This is a private project and should not be distributed or downloaded without the explicit permission of the author
+This is a public project and can be distributed or downloaded as long as credit is given to the author.
+This project was developed with the aid of:
+* [HaxeFlixel](http://haxeflixel.com/), a 2D game engine based in the Haxe programming language
+* [BFXR](https://www.bfxr.net/), a sound effect generation tool
+* [Google Fonts (VT323)](https://fonts.google.com/specimen/VT323), a source for non-commercial fonts
 
 ## Acknowledgements
 
