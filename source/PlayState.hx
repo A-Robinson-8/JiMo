@@ -21,7 +21,7 @@ class PlayState extends FlxState {
 
 	override public function create():Void {
 		FlxG.mouse.visible = false;
-		_player = new Player(Std.Int(FlxG.width/2), Std.Int(FlxG.height/2));
+		_player = new Player(Std.int(FlxG.width/2), Std.int(FlxG.height/2));
 		add(_player);
 		_hud = new Hud(_player);
 		add(_hud);
@@ -36,7 +36,7 @@ class PlayState extends FlxState {
 	}
 
 	override public function update(elapsed:Float):Void {
-		if (spawnCount <= spawnMax) spawn();
+		if (spawnCount < spawnMax) spawn();
 		super.update(elapsed);
 		FlxG.collide(_player, _asteroids, smash);
 		FlxG.collide(_asteroids, _asteroids);
