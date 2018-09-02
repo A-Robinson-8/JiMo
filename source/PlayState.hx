@@ -44,6 +44,10 @@ class PlayState extends FlxState {
 		var xDelta = Math.abs(playerVelocity.x - asteroidVelocity.x);
 		var yDelta = Math.abs(playerVelocity.y - asteroidVelocity.y);
 		var delta = Math.sqrt(xDelta * xDelta + yDelta * yDelta);
-		if (delta > _player.smashLimit) Asteroid.exists = false;
+		if (delta > _player.smashLimit) {
+			Asteroid.exists = false;
+			_player.fuel += Std.random(20) + 20;
+			if (_player.fuel > 100) _player.fuel = 100;
+		}
 	}
 }
