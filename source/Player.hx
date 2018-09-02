@@ -22,7 +22,9 @@ class Player extends FlxSprite {
   public var fuel:Float = 100;
   public var fuelEfficiency:Float = 0.5;
   public var smashLimit:Int = 1000;
+  public var scoreTemp:Int = 0;
   public var score:Int = 0;
+  public var multiplier:Int = 100;
   public var thrust:FlxSound = null;
 
   public function new(?X:Float=0, ?Y:Float=0) {
@@ -42,10 +44,12 @@ class Player extends FlxSprite {
     super.update(elapsed);
     angle = position.angleBetween(mousePosition);
   	FlxSpriteUtil.screenWrap(this);
+    if (FlxG.mouse.justReleased) this.calcScore();
   }
 
   public function move():Void {
     if (fuel != 0) {
+      multiplier += 1;
       var hDelta:Float = Math.abs(mousePosition.x - position.x);
       var vDelta:Float = Math.abs(mousePosition.y - position.y);
       var hSpeedOld:Float = hSpeed;
@@ -66,5 +70,11 @@ class Player extends FlxSprite {
 
   public function updatePosition():FlxPoint {
     return new FlxPoint(this.x, this.y);
+  }
+
+  public function calcScore():Void {
+    score += Std.int(scoreTemp * multiplier / 100);
+    scoreTemp = 0;
+    multiplier = 100;
   }
 }

@@ -22,6 +22,7 @@ class PlayState extends FlxState {
 	var spawnCount:Int = 0;
 	var smashSound:FlxSound = null;
 	var hitSound:FlxSound = null;
+	var multiplier:Int = 1;
 
 	override public function create():Void {
 		_player = new Player(Std.int(FlxG.width/2), Std.int(FlxG.height/2));
@@ -78,7 +79,8 @@ class PlayState extends FlxState {
 			spawnCount -= 1;
 			_player.fuel += quantity;
 			if (_player.fuel > 100) _player.fuel = 100;
-			_player.score += 1;
+			if (FlxG.mouse.pressed) _player.scoreTemp += 1;
+			else _player.score += 1;
 			_shake.start();
 			smashSound.play();
 			for (i in 0...Std.random(5) + 5) {
