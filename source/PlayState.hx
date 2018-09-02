@@ -16,6 +16,8 @@ class PlayState extends FlxState {
 	var _asteroids:FlxGroup = null;
 	var _shake:FlxShakeEffect = null;
 	var _effectSprite:FlxEffectSprite = null;
+	var spawnMax:Int = 10;
+	var spawnCount:Int = 0;
 
 	override public function create():Void {
 		FlxG.mouse.visible = false;
@@ -34,7 +36,7 @@ class PlayState extends FlxState {
 	}
 
 	override public function update(elapsed:Float):Void {
-		spawn();
+		if (spawnCount <= spawnMax) spawn();
 		super.update(elapsed);
 		FlxG.collide(_player, _asteroids, smash);
 		FlxG.collide(_asteroids, _asteroids);
@@ -46,6 +48,7 @@ class PlayState extends FlxState {
 			var _asteroid = new Asteroid(0, 0);
 			_asteroids.add(_asteroid);
 			add(_asteroid);
+			spawnCount += 1;
 		}
 	}
 
@@ -57,6 +60,7 @@ class PlayState extends FlxState {
 		var delta = Math.sqrt(xDelta * xDelta + yDelta * yDelta);
 		if (delta > _player.smashLimit) {
 			Asteroid.exists = false;
+			spawnCount -= 1;
 			_player.fuel += Std.random(20) + 20;
 			if (_player.fuel > 100) _player.fuel = 100;
 			_shake.start();
