@@ -10,11 +10,28 @@ import flixel.system.FlxAssets.FlxGraphicAsset;
 class Asteroid extends FlxSprite {
 
   var maxSpeed:Int = 250;
+  var size:Int = null;
 
   public function new(?X:Float=0, ?Y:Float=0) {
     super(X, Y);
-    makeGraphic(16, 16, FlxColor.WHITE);
+    size = Std.random(24) + 8;
+    makeGraphic(size, size, FlxColor.WHITE);
     velocity.set(Std.random(maxSpeed), Std.random(maxSpeed));
+    this.angle = Std.random(90);
+    switch (Std.random(4)) {
+      case 0:
+        this.x = 0;
+        this.y = Std.random(960);
+      case 1:
+        this.x = 960;
+        this.y = Std.random(960);
+      case 2:
+        this.x = Std.random(960);
+        this.y = 0;
+      case 3:
+        this.x = Std.random(960);
+        this.y = 960;
+    }
   }
 
   override public function update(elapsed:Float):Void {

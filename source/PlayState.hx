@@ -25,7 +25,7 @@ class PlayState extends FlxState {
 		add(_hud);
 		_asteroids = new FlxGroup();
 		add(_asteroids);
-		_shake = new FlxShakeEffect(15, 0.2);
+		_shake = new FlxShakeEffect(5, 0.2);
 		_effectSprite = new FlxEffectSprite(_player);
 		add(_effectSprite);
 		_effectSprite.effects = [_shake];
