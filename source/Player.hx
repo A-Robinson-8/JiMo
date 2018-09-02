@@ -15,7 +15,7 @@ class Player extends FlxSprite {
   public var hSpeed:Float = 0;
   public var vSpeed:Float = 0;
   public var limit:Float = 100;
-  public var friction:Float = 0.95;
+  public var friction:Float = 0.99;
   public var position:FlxPoint = null;
   public var mousePosition:FlxPoint = null;
   public var fuel:Float = 100;
