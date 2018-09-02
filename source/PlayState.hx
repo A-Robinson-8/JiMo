@@ -36,6 +36,7 @@ class PlayState extends FlxState {
 		spawn();
 		super.update(elapsed);
 		FlxG.collide(_player, _asteroids, smash);
+		FlxG.collide(_asteroids, _asteroids);
 		updateEffect();
 	}
 
