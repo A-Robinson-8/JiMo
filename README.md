@@ -2,6 +2,10 @@
 
 "We regret to inform pilots that, due to budget cuts, new triangle ships will be fitted with reinforced hull where the lasers used to be."
 
+## Release
+
+Smashteroids was entered into GMTK Jam 2018 via itch.io on 02/09/2018
+
 ## Overview
 
 * Developed in Haxeflixel for GMTK Jam 2018
