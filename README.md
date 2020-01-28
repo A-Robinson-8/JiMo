@@ -16,7 +16,7 @@ Smashteroids was entered into GMTK Jam 2018 via itch.io on 02/09/2018
 
 ## Authors
 
-Developed by [Alistair Robinson](https://github.com/A-Robinson-8)
+Developed by [Alistair Robinson](https://github.com/A-Robinson-8) in association with the University of Warwick Game Design Society.
 
 ## License
 
@@ -29,4 +29,4 @@ This project was developed with the aid of:
 ## Acknowledgements
 
 * [Alex Dixon](https://warwick.ac.uk/fac/sci/dcs/people/research/u1791135/) (University of Warwick DCS, PhD Student) for introducing me to the Haxe programming language
-* [Warwick Game Design Society](http://www.warwickgamedesign.co.uk/) (University of Warwick) for reigniting my interest in game development
+* [University of Warwick Game Design Society](http://www.warwickgamedesign.co.uk/) (University of Warwick) for reigniting my interest in game development
